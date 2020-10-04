@@ -1,5 +1,10 @@
 RGBLIGHT_ENABLE = yes
 AUTO_SHIFT_ENABLE = yes
+
+# https://thomasbaart.nl/2018/12/01/reducing-firmware-size-in-qmk/
+EXTRAFLAGS += -flto
+
+
 # If you want to change the display of OLED, you need to change here
 SRC +=  ./lib/glcdfont.c \
         ./lib/rgb_state_reader.c \

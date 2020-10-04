@@ -46,3 +46,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define RGBLIGHT_SAT_STEP 17
     #define RGBLIGHT_VAL_STEP 17
 #endif
+
+// https://thomasbaart.nl/2018/12/01/reducing-firmware-size-in-qmk/
+#define NO_ACTION_MACRO
+#define NO_ACTION_FUNCTION
