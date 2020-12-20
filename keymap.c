@@ -34,7 +34,7 @@ enum macro_keycodes {
 //#define LY_RSE MO(_RAISE)
 
 // ESC when tapped and Left Control when held  (see TAPPING_TERM in config.h)
-#define KY_ESC_LCTL LCTL_T(KC_ESC)
+#define ESC_LCTL LCTL_T(KC_ESC)
 
 // SUPER when tapped and Left ALT when held
 //#define KY_SUPER_LALT ALT_T(KC_LGUI)
@@ -42,19 +42,48 @@ enum macro_keycodes {
 // Mod-Tap key MT(mod, kc) acts like a modifier when held, and a regular keycode kc when tapped
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  /* Default layer: http://www.keyboard-layout-editor.com/#/gists/08d9827d916662a9414f48805aa895a5 */
-  [_QWERTY] = LAYOUT(
-        KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,                         KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSPC,
-        KY_ESC_LCTL,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,                         KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,
-        KC_LSFT,  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,                         KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT,
-                                                MT(MOD_LALT, KC_LGUI),  LOWER,   KC_SPC,   KC_ENT,   RAISE,   KC_ALGR
-    ),
+  /*
+ * Base Layer: QWERTY
+ *
+ * ,-------------------------------------------.                              ,-------------------------------------------.
+ * |Tab     |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |  | \   |
+ * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
+ * |Ctrl/ESC|   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L  | ;  : |  ' "   |
+ * |--------+------+------+------+------+------+                              +------+------+------+------+------+--------|
+ * | Gui    |   Z  |   X  |   C  |   V  |   B  |                              |   N  |   M  | ,  < | . >  | /  ? |  - _   |
+ * `----------------------+------+------+------+------+                +------+------+------+------+----------------------'
+ *                               | Cmd  |Shift | Space|                | Enter|Shift |AltGr |
+ *                               | Alt  |      | Lower|                | Raise|      |      |
+ *                               ----------------------                ----------------------
+ */
+  [_QWERTY] = LAYOUT_split_3x6_3( \
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+       KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSPC,\
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+     ESC_LCTL,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,\
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      KC_LGUI,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_MINS,\
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                            MT(MOD_LALT, KC_LGUI), KC_LSFT,LT(_LOWER,KC_SPC),\
+                                                                      LT(_RAISE, KC_ENT), KC_RSFT,  KC_ALGR \
+                                      //`--------------------------'  `--------------------------'
+
+  ),
+
+
+// const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+//   [_QWERTY] = LAYOUT(
+//         KC_TAB,   KC_Q,     KC_W,     KC_E,     KC_R,     KC_T,                         KC_Y,     KC_U,     KC_I,     KC_O,     KC_P,     KC_BSPC,
+//         KY_ESC_LCTL,  KC_A,     KC_S,     KC_D,     KC_F,     KC_G,                         KC_H,     KC_J,     KC_K,     KC_L,     KC_SCLN,  KC_QUOT,
+//         KC_LSFT,  KC_Z,     KC_X,     KC_C,     KC_V,     KC_B,                         KC_N,     KC_M,     KC_COMM,  KC_DOT,   KC_SLSH,  KC_RSFT,
+//                                                 MT(MOD_LALT, KC_LGUI),  LOWER,LT(_LOWER, KC_SPC),KC_ENT,   RAISE,   KC_ALGR
+//     ),
 
   /* Lower layer: http://www.keyboard-layout-editor.com/#/gists/c3fba5eaa2cd70fdfbdbc0f9e34d3bc0 */
   [_LOWER] = LAYOUT(
-        KC_CAPS,  KC_EXLM,    KC_AT,     KC_HASH,  KC_DLR,    KC_PERC,                      KC_CIRC,  KC_AMPR,  KC_ASTR,  KC_LPRN,  KC_RPRN,  _______,
-        _______,  KC_KP_1,    KC_KP_3,   KC_KP_7,  KC_KP_5,   KC_KP_DOT,                    KC_PIPE,  KC_UNDS,  KC_PLUS,  KC_LCBR,  KC_RCBR,  KC_TILD,
-        _______,  KC_KP_0,    KC_PSCR,   KC_SLCK,  KC_PAUS,   KC_APP,                       KC_BSLS,  KC_MINS,  KC_EQL,   KC_LBRC,  KC_RBRC,  KC_GRV,
+        KC_CAPS,  KC_EXLM,    KC_AT,     KC_HASH,  KC_DLR,    KC_PERC,                    KC_CIRC,  KC_AMPR,  KC_ASTR,  KC_LPRN,  KC_RPRN,  _______,
+        KC_KP_0,  KC_KP_1,    KC_KP_2,   KC_KP_3,  KC_KP_4,   KC_KP_5,                    KC_PIPE,  KC_UNDS,  KC_PLUS,  KC_LCBR,  KC_RCBR,  KC_TILD,
+        _______,  KC_KP_6,    KC_KP_7,   KC_KP_8,  KC_KP_9,   KC_KP_DOT,                  KC_BSLS,  KC_MINS,  KC_EQL,   KC_LBRC,  KC_RBRC,  KC_GRV,
                                                    _______,    _______,  _______,  _______,  _______,  _______
     ),
 
