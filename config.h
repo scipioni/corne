@@ -48,5 +48,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 // https://thomasbaart.nl/2018/12/01/reducing-firmware-size-in-qmk/
-//#define NO_ACTION_MACRO
-//#define NO_ACTION_FUNCTION
+// if there are size problems comment
+#define NO_ACTION_MACRO
+#define NO_ACTION_FUNCTION

@@ -82,8 +82,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Lower layer: http://www.keyboard-layout-editor.com/#/gists/c3fba5eaa2cd70fdfbdbc0f9e34d3bc0 */
   [_LOWER] = LAYOUT(
         KC_CAPS,  KC_EXLM,    KC_AT,     KC_HASH,  KC_DLR,    KC_PERC,                    KC_CIRC,  KC_AMPR,  KC_ASTR,  KC_LPRN,  KC_RPRN,  _______,
-        KC_KP_0,  KC_KP_1,    KC_KP_2,   KC_KP_3,  KC_KP_4,   KC_KP_5,                    KC_PIPE,  KC_UNDS,  KC_PLUS,  KC_LCBR,  KC_RCBR,  KC_TILD,
-        _______,  KC_KP_6,    KC_KP_7,   KC_KP_8,  KC_KP_9,   KC_KP_DOT,                  KC_BSLS,  KC_MINS,  KC_EQL,   KC_LBRC,  KC_RBRC,  KC_GRV,
+        _______,  KC_KP_1,    KC_KP_2,   KC_KP_3,  KC_KP_4,   KC_KP_5,                    KC_PIPE,  KC_UNDS,  KC_PLUS,  KC_LCBR,  KC_RCBR,  KC_TILD,
+        KC_KP_0,  KC_KP_6,    KC_KP_7,   KC_KP_8,  KC_KP_9,   KC_KP_DOT,                  KC_BSLS,  KC_MINS,  KC_EQL,   KC_LBRC,  KC_RBRC,  KC_GRV,
                                                    _______,    _______,  _______,  _______,  _______,  _______
     ),
 
