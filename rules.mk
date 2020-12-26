@@ -1,7 +1,9 @@
 OLED_DRIVER_ENABLE  = yes
 
-RGBLIGHT_ENABLE = yes
-AUTO_SHIFT_ENABLE = yes
+RGBLIGHT_ENABLE = no
+RGB_MATRIX_ENABLE = yes
+
+//AUTO_SHIFT_ENABLE = yes
 
 # https://thomasbaart.nl/2018/12/01/reducing-firmware-size-in-qmk/
 EXTRAFLAGS += -flto
