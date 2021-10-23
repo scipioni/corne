@@ -10,18 +10,36 @@
 // Mod-Tap key MT(mod, kc) acts like a modifier when held, and a regular keycode kc when tapped
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_QWERTY] = LAYOUT_split_3x6_3( \
-       MT(MOD_LGUI, KC_GRV),    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSPC,\
-       MT(MOD_LCTL, KC_ESC),  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                         KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, MT(MOD_RCTL, KC_MINS),\
-       MT(MOD_LGUI, KC_TAB),    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_QUOTE,\
-                            MT(MOD_LALT, KC_LGUI), KC_LSFT,LT(_LOWER,KC_SPC),\
-                                                                      LT(_RAISE, KC_ENT), KC_RSFT,  KC_ALGR \
+[_QWERTY] = LAYOUT_split_3x6_3( 
+//┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐                                   ┌──────────┬──────────┬──────────┬──────────┬──────────┬──────────┐
+
+    KC_GRV   ,   KC_Q   ,   KC_W   ,    KC_E  ,    KC_R  ,    KC_T  ,                                        KC_Y  ,    KC_U  ,    KC_I  ,    KC_O  ,   KC_P   ,  KC_TAB  ,
+//├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤                                   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤ 
+
+  MT(MOD_LCTL,
+  KC_ESC),       KC_A   ,    KC_S  ,    KC_D  ,    KC_F  ,    KC_G  ,                                        KC_H  ,    KC_J  ,    KC_K  ,    KC_L  , KC_SCLN, MT(MOD_RCTL, 
+                                                                                                                                                                  KC_MINS),
+//├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤                                   ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤ 
+
+    KC_LGUI,     KC_Z   ,    KC_X  ,    KC_C  ,    KC_V  ,    KC_B  ,                                        KC_N  ,    KC_M  ,  KC_COMM ,  KC_DOT  , KC_SLSH  , KC_QUOTE,
+//└──────────┴──────────┴──────────┴──────────┼──────────┼──────────┼──────────┐             ┌──────────┼──────────┼──────────┼──────────┴──────────┴──────────┴──────────┘       
+
+                                               MT(MOD_LALT, 
+                                                  KC_LGUI), MT(MOD_LSFT, 
+                                                                KC_DEL), LT(_LOWER,
+                                                                           KC_SPC),
+                                                                                              LT(_RAISE, 
+                                                                                                  KC_ENT), MT(MOD_RSFT, 
+                                                                                                              KC_BSPC),  MT(MOD_RALT, 
+                                                                                                                             KC_INS) \
+                                            // └──────────┴──────────┴──────────┘             └──────────┴──────────┴──────────┘
+ 
   ),
 
 
   /* red Lower layer: http://www.keyboard-layout-editor.com/#/gists/c3fba5eaa2cd70fdfbdbc0f9e34d3bc0 */
   [1] = LAYOUT(
-        KC_CAPS,   KC_EXLM,    KC_AT,     KC_HASH,  KC_DLR,    KC_PERC,                    KC_CIRC,  KC_AMPR,  KC_ASTR,  KC_LPRN,  KC_RPRN,  KC_DEL,
+        KC_CAPS,   KC_EXLM,    KC_AT,     KC_HASH,  KC_DLR,    KC_PERC,                    KC_CIRC,  KC_AMPR,  KC_ASTR,  KC_LPRN,  KC_RPRN,  _______,
         KC_LCTL,  KC_KP_1,    KC_KP_2,   KC_KP_3,  KC_KP_4,   KC_KP_5,                    _______,  KC_PIPE,  KC_PLUS,  KC_LCBR,  KC_RCBR,  KC_RCTL,
         KC_KP_0,  KC_KP_6,    KC_KP_7,   KC_KP_8,  KC_KP_9,   KC_KP_DOT,                  _______,  KC_BSLS,  KC_EQL,   KC_LBRC,  KC_RBRC,  _______,
                                                    _______,    KC_LSFT,  _______, MO(3),  KC_RSFT,  _______
@@ -29,7 +47,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* blu Raise layer: http://www.keyboard-layout-editor.com/#/gists/08b44355d4ca85d294bad9e2821f91d7 */
   [2] = LAYOUT(
-        KC_LGUI,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,                         KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_INS,
+        _______,  KC_1,     KC_2,     KC_3,     KC_4,     KC_5,                         KC_6,     KC_7,     KC_8,     KC_9,     KC_0,     KC_INS,
         KC_LCTL,  KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,                        KC_LEFT,  KC_DOWN,  KC_UP,    KC_RGHT,  KC_F11,   KC_RCTL,
         _______,  KC_F6,    KC_F7,    KC_F8,    KC_F9,    KC_F10,                       KC_HOME,  KC_PGDN,  KC_PGUP,  KC_END,   KC_F12,   _______,
                                             _______ ,    KC_LSFT,      MO(3),  _______,  KC_RSFT,  _______
